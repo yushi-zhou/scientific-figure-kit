@@ -25,19 +25,19 @@ export const metaAtomLibrary: FigureTemplate = {
   ],
   render: (params, theme) => {
     return (
-      <svg width="800" height="300" viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
-        <text x="400" y="30" fontSize={theme.fontSize.title} fontWeight="bold" textAnchor="middle" fontFamily={theme.fontFamily}>{params.title}</text>
+      <svg width={800} height={300} viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
+        <text x={400} y={30} fontSize={theme.fontSize.title} fontWeight="bold" textAnchor="middle" fontFamily={theme.fontFamily}>{params.title}</text>
         
         {/* Cells */}
         {[...Array(params.unitCellCount)].map((_, i) => (
           <g key={i} transform={`translate(${100 + i * 80}, 150)`}>
-             <rect x="-30" y="-30" width="60" height="60" fill="none" stroke="#ccc" strokeDasharray="4 2" />
-             <rect x="-10" y="-20" width={10 + i * 4} height="40" fill={theme.colors.primary} transform={`rotate(${i * 15})`} />
-             <text x="0" y="50" textAnchor="middle" fontSize="12">{(i * (360 / params.unitCellCount)).toFixed(0)}°</text>
+             <rect x={-30} y={-30} width={60} height={60} fill="none" stroke="#ccc" strokeDasharray="4 2" />
+             <rect x={-10} y={-20} width={10 + i * 4} height={40} fill={theme.colors.primary} transform={`rotate(${i * 15})`} />
+             <text x={0} y={50} textAnchor="middle" fontSize="12">{(i * (360 / params.unitCellCount)).toFixed(0)}°</text>
           </g>
         ))}
 
-        <TextLabel x="400" y="250" text={params.phaseLabel} anchor="middle" fontSize="16" color={theme.colors.secondary} />
+        <TextLabel groupId="textlabel-3"  x={400} y={250} text={params.phaseLabel} anchor="middle" fontSize="16" color={theme.colors.secondary} />
       </svg>
     );
   }
