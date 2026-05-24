@@ -44,4 +44,3 @@ describe('exportSvg', () => {
     document.createElement = originalCreateElement;
   });
 });
-
