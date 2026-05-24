@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { exportSvg } from './exportSvg';
+import { exportSvg, serializeSvg } from './exportSvg';
 
 describe('exportSvg', () => {
   it('should serialize SVG element correctly', () => {
@@ -42,5 +42,15 @@ describe('exportSvg', () => {
 
     // Restore original document.createElement
     document.createElement = originalCreateElement;
+  });
+
+  it('should preserve xmlns and allow background styling in serialization', () => {
+    const svg: SVGSVGElement = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('viewBox', '0 0 10 10');
+
+    const serialized = serializeSvg(svg, 'white');
+
+    expect(serialized).toContain('xmlns="http://www.w3.org/2000/svg"');
+    expect(serialized).toContain('style="background-color: white;"');
   });
 });

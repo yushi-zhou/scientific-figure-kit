@@ -11,8 +11,6 @@ export function SvgPreview({ children, onSvgElementChange }: SvgPreviewProps) {
   useEffect(() => {
     const svgElement = wrapperRef.current?.querySelector('svg');
     onSvgElementChange(svgElement ?? null);
-
-    return () => onSvgElementChange(null);
   }, [children, onSvgElementChange]);
 
   return (
