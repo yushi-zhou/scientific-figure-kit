@@ -2,7 +2,7 @@ import React from 'react';
 import { FigureTemplate } from '../types/template';
 
 interface TemplateSelectorProps {
-  templates: FigureTemplate[];
+  templates: FigureTemplate<any>[];
   selectedTemplateId: string;
   onSelectTemplate: (templateId: string) => void;
 }
