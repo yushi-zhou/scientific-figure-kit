@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { exportSvg } from './exportSvg';
 
 describe('exportSvg', () => {
@@ -11,9 +11,9 @@ describe('exportSvg', () => {
     svg.appendChild(circle);
 
     // Mock document.createElement('a') and its click method
-    const mockClick = vitest.fn();
-    const mockAppendChild = vitest.fn();
-    const mockRemoveChild = vitest.fn();
+    const mockClick = vi.fn();
+    const mockAppendChild = vi.fn();
+    const mockRemoveChild = vi.fn();
 
     const originalCreateElement = document.createElement.bind(document);
     document.createElement = (tagName: string) => {
@@ -44,3 +44,4 @@ describe('exportSvg', () => {
     document.createElement = originalCreateElement;
   });
 });
+
