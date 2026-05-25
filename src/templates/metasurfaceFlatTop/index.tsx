@@ -156,11 +156,11 @@ export const metasurfaceFlatTop: FigureTemplate<MetasurfaceFlatTopParams> = {
   render: (params, theme) => {
     const style = getThemePreset(params.stylePreset, theme);
     const latticeWidth = 118;
-    const latticeHeight = 150;
+    const latticeHeight = 120;
     const latticeX = 314;
-    const latticeY = 153;
+    const latticeY = 200;
     const targetX = 728;
-    const targetY = 184;
+    const targetY = 260;
     const targetSize = 84;
 
     return (
@@ -178,14 +178,14 @@ export const metasurfaceFlatTop: FigureTemplate<MetasurfaceFlatTopParams> = {
 
         <g id="layer_labels">
           <TextLabel groupId="layer_labels_wavelength" x={122} y={92} text={params.wavelengthLabel} anchor="start" fontSize={theme.fontSize.label} color={style.labelColor} />
-          <TextLabel groupId="layer_labels_period" x={676} y={104} text={params.periodLabel} anchor="start" fontSize={theme.fontSize.small} color={style.mutedLabelColor} />
-          <TextLabel groupId="layer_labels_input" x={162} y={160} text={params.inputBeamLabel} anchor="middle" fontSize={theme.fontSize.label} color={style.labelColor} />
-          <TextLabel groupId="layer_labels_material" x={latticeX + latticeWidth / 2} y={latticeY + latticeHeight + 48} text={params.materialLabel} anchor="middle" fontSize={theme.fontSize.small} color={style.mutedLabelColor} />
-          <TextLabel groupId="layer_labels_target_size" x={targetX - 18} y={174} text={params.targetSizeLabel} anchor="end" fontSize={theme.fontSize.small} color={style.labelColor} />
+          <TextLabel groupId="layer_labels_period" x={676} y={110} text={params.periodLabel} anchor="start" fontSize={theme.fontSize.small} color={style.mutedLabelColor} />
+          <TextLabel groupId="layer_labels_input" x={162} y={latticeY + latticeHeight / 2} text={params.inputBeamLabel} anchor="middle" fontSize={theme.fontSize.label} color={style.labelColor} />
+          <TextLabel groupId="layer_labels_material" x={latticeX + latticeWidth / 2} y={latticeY + latticeHeight + 60} text={params.materialLabel} anchor="middle" fontSize={theme.fontSize.small} color={style.mutedLabelColor} />
+          <TextLabel groupId="layer_labels_target_size" x={targetX - 18} y={targetY - 8} text={params.targetSizeLabel} anchor="end" fontSize={theme.fontSize.small} color={style.labelColor} />
         </g>
 
         <g id="layer_input_beam">
-          <GaussianBeam groupId="layer_input_beam_beam" x1={72} y1={220} x2={304} y2={220} waistStart={68} waistEnd={22} color="url(#beamGradient)" opacity={params.beamOpacity} />
+          <GaussianBeam groupId="layer_input_beam_beam" x1={72} y1={latticeY + latticeHeight / 2} x2={304} y2={latticeY + latticeHeight / 2} waistStart={68} waistEnd={22} color="url(#beamGradient)" opacity={params.beamOpacity} />
         </g>
 
         <g id="layer_metasurface">
@@ -202,16 +202,15 @@ export const metasurfaceFlatTop: FigureTemplate<MetasurfaceFlatTopParams> = {
             label={params.metasurfaceLabel}
           />
         </g>
-
-        <PropagationRegion groupId="layer_propagation" x={390} y={150} width={302} height={162} label="Free-space propagation" color={style.regionFill} opacity={0.78} />
+        <PropagationRegion groupId="layer_propagation" x={390} y={220} width={302} height={180} label="Free-space propagation" color={style.regionFill} opacity={0.78} />
 
         <g id="layer_target">
-          <GaussianBeam groupId="layer_target_beam" x1={432} y1={236} x2={710} y2={236} waistStart={28} waistEnd={42} color={style.accentColor} opacity={Math.max(0.16, params.beamOpacity * 0.52)} />
+          <GaussianBeam groupId="layer_target_beam" x1={432} y1={(targetY + targetSize / 2)} x2={710} y2={(targetY + targetSize / 2)} waistStart={28} waistEnd={42} color={style.accentColor} opacity={Math.max(0.16, params.beamOpacity * 0.52)} />
           <TargetPlane groupId="layer_target_plane" x={targetX} y={targetY} width={20} height={targetSize} color={style.targetColor} label={params.outputFieldLabel} opacity={params.targetOpacity} />
         </g>
 
         <g id="layer_annotations">
-          <Arrow groupId="layer_annotations_working_distance" x1={404} y1={348} x2={724} y2={348} label={params.workingDistanceLabel} color={style.labelColor} strokeWidth={2.1} />
+          <Arrow groupId="layer_annotations_working_distance" x1={latticeX + latticeWidth + 20} y1={(targetY + targetSize / 2)} x2={targetX - 8} y2={(targetY + targetSize / 2)} label={params.workingDistanceLabel} color={style.labelColor} strokeWidth={2.1} />
         </g>
 
         {params.showCoordinateAxis && (
@@ -219,12 +218,12 @@ export const metasurfaceFlatTop: FigureTemplate<MetasurfaceFlatTopParams> = {
         )}
 
         {params.showScaleBar && (
-          <ScaleBar groupId="layer_scale_bar" x={768} y={462} length={96} label="100 µm" color={style.labelColor} />
+          <ScaleBar groupId="layer_scale_bar" x={targetX + 20} y={targetY + targetSize + 18} length={96} label="100 µm" color={style.labelColor} />
         )}
 
         {params.showIntensityInset && (
           <g id="layer_insets">
-            <IntensityInset groupId="layer_insets_target" x={696} y={66} width={204} height={170} title="Flat-top target intensity" />
+            <IntensityInset groupId="layer_insets_target" x={targetX} y={targetY + targetSize + 16} width={204} height={170} title="Flat-top target intensity" />
           </g>
         )}
       </svg>
