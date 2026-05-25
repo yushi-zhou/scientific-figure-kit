@@ -16,7 +16,7 @@ import { ParameterPanel } from './components/ParameterPanel';
 import { SvgPreview } from './components/SvgPreview';
 import { SvgValidationWarning } from './export/validateSvg';
 
-const templates = [
+const templates: FigureTemplate<any>[] = [
   metasurfaceFlatTop,
   fiberVsMetasurface,
   sideFirePAI,
@@ -47,7 +47,7 @@ function App() {
   const [svgWarnings, setSvgWarnings] = useState<SvgValidationWarning[]>([]);
   const svgRef = useRef<SVGSVGElement | null>(null);
 
-  const activeTemplate = useMemo<FigureTemplate>(() => {
+  const activeTemplate = useMemo<FigureTemplate<any>>(() => {
     return templates.find((template) => template.id === activeTemplateId) ?? templates[0];
   }, [activeTemplateId]);
 

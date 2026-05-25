@@ -7,7 +7,7 @@ describe('App', () => {
   it('resets params to the selected template defaults when switching templates', () => {
     render(<App />);
 
-    const templateSelect = screen.getByRole('combobox');
+    const templateSelect = screen.getAllByRole('combobox')[0];
     const titleInput = screen.getByLabelText('Title') as HTMLInputElement;
 
     expect(titleInput.value).toBe('Metasurface flat-top generation');
